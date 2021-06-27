@@ -1,12 +1,12 @@
 import React from 'react';
-import { DataApp, DataAppProviderProps } from './types';
+import { Client, DataApp, DataAppProviderProps } from './types';
 
 const DataAppContext = React.createContext<DataApp>({} as DataApp);
 
 export const DataAppProvider: React.FC<DataAppProviderProps> = ({
   children,
 }: DataAppProviderProps) => {
-  const client = {
+  const client: Client = {
     id: 62416,
     name: 'DROGARIA GIMENEZ',
     razaoSocial: 'BENERVAU & CLAUDIO DROGARIA LTDA - ME',

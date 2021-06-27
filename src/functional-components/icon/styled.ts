@@ -34,6 +34,9 @@ export const IconStyl = styled.i<IconStylProps>`
   &.icon-arrow-left:before {
     content: '';
   }
+  &.icon-shop:before {
+    content: '';
+  }
   &.icon-paperplane:before {
     content: '';
   }
@@ -54,6 +57,30 @@ export const IconStyl = styled.i<IconStylProps>`
   }
   &.icon-ticket:before {
     content: '';
+  }
+  &.icon-arrow_forward_ios:before {
+    content: '';
+  }
+  &.icon-arrow_back_ios:before {
+    content: '';
+  }
+  &.icon-arrow_drop_up:before {
+    content: '';
+  }
+  &.icon-arrow_drop_down:before {
+    content: '';
+  }
+  &.icon-keyboard_arrow_up:before {
+    content: '';
+  }
+  &.icon-keyboard_arrow_right:before {
+    content: '';
+  }
+  &.icon-keyboard_arrow_left:before {
+    content: '';
+  }
+  &.icon-keyboard_arrow_down:before {
+    content: '';
   }
   &.icon-remove_circle_outline:before {
     content: '';

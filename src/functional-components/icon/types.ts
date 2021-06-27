@@ -6,4 +6,5 @@ export interface IconStylProps {
 
 export interface IconProps extends IconStylProps {
   name?: string;
+  className?: string;
 }

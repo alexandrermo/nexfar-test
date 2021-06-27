@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Products from '../../pages/products';
 
 const Routes: React.FC = () => {
   return (
@@ -7,9 +8,7 @@ const Routes: React.FC = () => {
       <Route path="/products">
         <Products />
       </Route>
-      <Route path="/shopping-cart">
-        <ShoppingCart />
-      </Route>
+      <Route path="/shopping-cart">{/* <ShoppingCart /> */}</Route>
     </Switch>
   );
 };
