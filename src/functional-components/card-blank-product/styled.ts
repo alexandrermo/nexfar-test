@@ -1,8 +1,6 @@
 import { Col, Row } from 'react-bootstrap';
 import styled, { css } from 'styled-components';
-import Icon from '../icon';
-import Input from '../input';
-import { BtnIconQntProps, ColInfoProps } from './types';
+import { BtnIconQntProps, BtnIconTrashProps } from './types';
 
 export const SpanSku = styled.span`
   background-color: #301b2c;
@@ -28,6 +26,7 @@ export const RowHeader = styled(Row)`
 export const ColImg = styled(Col)`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ImgProduct = styled.img`
@@ -44,10 +43,14 @@ export const RowInfo = styled(Row)`
   margin: 0;
 `;
 
-export const ColInfo = styled(Col)<ColInfoProps>`
+export const ColHeaderInfo = styled(Col)`
+  padding: 0 0.5rem;
+`;
+
+export const ColInfo = styled(Col)`
   display: flex;
-  flex-direction: ${({ quantity }) => (quantity ? 'row' : 'column')};
-  align-items: ${({ flexStart }) => (flexStart ? 'flex-start' : 'unset')};
+  flex-direction: column;
+  padding: 0 0.5rem;
 `;
 
 export const SpanWithoutSt = styled.span`
@@ -68,7 +71,7 @@ export const SpanHeaderInfo = styled.span`
 `;
 
 export const SpanPrice = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
 `;
 
@@ -79,6 +82,7 @@ export const ColTrash = styled(Col)`
 
 export const RowInfoValues = styled(Row)`
   align-items: center;
+  padding-bottom: 3rem;
 `;
 
 export const InputQnt = styled.input`
@@ -87,6 +91,8 @@ export const InputQnt = styled.input`
   background-color: transparent;
   border-bottom: 1px solid black;
   width: 3rem;
+  text-align: end;
+
   &:focus-visible {
     outline: none;
   }
@@ -121,4 +127,27 @@ export const BtnIconQnt = styled.button<BtnIconQntProps>`
             margin-left: 0;
           }
         `}
+`;
+
+export const BtnIconTrash = styled.button<BtnIconTrashProps>`
+  appearance: none;
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  background-color: transparent;
+
+  visibility: ${({ visHidden }) => (visHidden ? 'hidden' : 'unset')};
+`;
+
+export const RowFooter = styled(Row)`
+  margin-left: -30px;
+`;
+
+export const SpanFooter = styled.span`
+  background-color: rgb(234, 224, 245);
+  border-radius: 20px;
+  padding: 0.1rem 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
 `;

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
 import CardFilter from './card-filter';
 import CardProducts from './card-products';
 import { ColFilter, ColProducts, RowProducts } from './styled';
+import { ChckFilters } from './types';
 
 const Products: React.FC = () => {
-  const [chkFilters, setChkFilters] = React.useState(() => new Set<string>());
+  const [chkFilters, setChkFilters] = React.useState<ChckFilters>(
+    {} as ChckFilters
+  );
 
   return (
     <RowProducts>
@@ -13,7 +15,7 @@ const Products: React.FC = () => {
         <CardProducts chkFilters={chkFilters} />
       </ColProducts>
       <ColFilter xs={3}>
-        <CardFilter setChkFilters={setChkFilters} />
+        <CardFilter chkFilters={chkFilters} setChkFilters={setChkFilters} />
       </ColFilter>
     </RowProducts>
   );

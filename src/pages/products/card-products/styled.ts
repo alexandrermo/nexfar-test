@@ -1,6 +1,7 @@
 import { Form } from '@unform/web';
 import styled from 'styled-components';
 import Input from '../../../functional-components/input';
+import { BtnPageNumberProps } from './types';
 
 export const DivProducts = styled.div`
   display: flex;
@@ -47,4 +48,48 @@ export const InputSearch = styled(Input)`
 export const LabelFilter = styled.label`
   font-size: 1.1rem;
   margin: 0;
+`;
+
+export const DivCardsProducts = styled.div`
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #5b127d;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+export const DivPages = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const BtnPageNumber = styled.button.attrs({
+  type: 'button',
+})<BtnPageNumberProps>`
+  appearance: none;
+  border-radius: 30px;
+  border: 0px;
+  display: flex;
+  padding: 0.1rem 0.65rem;
+  background-color: ${({ active }) => (active ? '#3cba92' : 'transparent')};
+  color: ${({ active }) => (active ? 'white' : 'unset')};
+`;
+
+export const BtnPageArrow = styled.button.attrs({ type: 'button' })`
+  border: 0px;
+  display: flex;
+  background-color: transparent;
+  appearance: none;
+  align-items: center;
+  padding: 0;
+  margin: 0 0.5rem;
 `;

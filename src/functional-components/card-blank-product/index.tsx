@@ -1,22 +1,26 @@
-import { Form } from '@unform/web';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useDataApp } from '../../contexts/data-app';
 import { CardBlank } from '../../styled-components/card-blank';
 import Icon from '../icon';
 import Tooltip from '../tooltip';
 import {
   BtnIconQnt,
+  BtnIconTrash,
   BtnWarnMe,
   ColBody,
+  ColHeaderInfo,
   ColImg,
   ColInfo,
   ColTrash,
   ImgProduct,
   InputQnt,
   LiTooltip,
+  RowFooter,
   RowHeader,
   RowInfo,
   RowInfoValues,
+  SpanFooter,
   SpanHeaderInfo,
   SpanName,
   SpanPrice,
@@ -29,7 +33,12 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
   product,
   ...rest
 }: CardBlankProductProps) => {
-  const [quantity, setQuantity] = React.useState(0);
+  const { itemCard, dispatchShoppingCard } = useDataApp(product.id);
+
+  const [quantity, setQuantity] = React.useState(
+    itemCard ? itemCard.quantity : 0
+  );
+
   const intervalQntRef = React.useRef<NodeJS.Timeout>();
 
   const stopInterval = React.useCallback(() => {
@@ -78,6 +87,10 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
     startAdd();
   }, [setQuantity]);
 
+  const resetQuantity = React.useCallback(() => {
+    setQuantity(0);
+  }, [setQuantity]);
+
   const onChangeIptQnt = React.useCallback(
     (event) => {
       const inputQnt = event.currentTarget;
@@ -102,6 +115,10 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
 
   const btnRemoveDis = inputDisabled || quantity === 0;
   const btnAddDis = inputDisabled || quantity === product.quantityAvailable;
+
+  React.useEffect(() => {
+    dispatchShoppingCard({ type: 'change', product, quantity });
+  }, [quantity]);
 
   return (
     <CardBlank {...rest}>
@@ -137,24 +154,24 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
 
       <Row>
         <ColImg xs={3}>
-          <ImgProduct className="my-4" src={product.imageURL} />
+          <ImgProduct className="" src={product.imageURL} />
         </ColImg>
         <ColBody className="pl-0">
           <RowInfo className="mt-4 ml-3">
             <Col className="pl-0">
               <Row>
-                <Col>
+                <ColHeaderInfo>
                   <SpanHeaderInfo>Base</SpanHeaderInfo>
-                </Col>
-                <Col>
+                </ColHeaderInfo>
+                <ColHeaderInfo>
                   <SpanHeaderInfo>Estoque</SpanHeaderInfo>
-                </Col>
-                <Col>
-                  <SpanHeaderInfo>Qutantidade (un)</SpanHeaderInfo>
-                </Col>
-                <Col>
+                </ColHeaderInfo>
+                <ColHeaderInfo>
+                  <SpanHeaderInfo>Quantidade (un)</SpanHeaderInfo>
+                </ColHeaderInfo>
+                <ColHeaderInfo>
                   <SpanHeaderInfo>Valor</SpanHeaderInfo>
-                </Col>
+                </ColHeaderInfo>
               </Row>
               <RowInfoValues className="mt-4">
                 <ColInfo>
@@ -164,7 +181,13 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
                   </SpanPrice>
                 </ColInfo>
 
-                <ColInfo flexStart={!product.quantityAvailable}>
+                <ColInfo
+                  style={{
+                    alignItems: !product.quantityAvailable
+                      ? 'flex-start'
+                      : undefined,
+                  }}
+                >
                   {product.quantityAvailable ? (
                     <span>{`${product.quantityAvailable} un`}</span>
                   ) : (
@@ -174,7 +197,12 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
                     </>
                   )}
                 </ColInfo>
-                <ColInfo quantity flexStart>
+                <ColInfo
+                  style={{
+                    alignItems: 'flex-start',
+                    flexDirection: 'row',
+                  }}
+                >
                   <BtnIconQnt
                     type="button"
                     typeIcon="remove"
@@ -224,9 +252,20 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
               </RowInfoValues>
             </Col>
             <ColTrash xs="auto">
-              <Icon name="trash" color="#f62854" />
+              <BtnIconTrash visHidden={quantity === 0} onClick={resetQuantity}>
+                <Icon name="trash" color="#f62854" size="1.3rem" />
+              </BtnIconTrash>
             </ColTrash>
           </RowInfo>
+
+          <RowFooter className="mt-3">
+            <Col xs="auto">
+              <SpanFooter>{product.category}</SpanFooter>
+            </Col>
+            <Col xs="auto">
+              <SpanFooter>{product.maker}</SpanFooter>
+            </Col>
+          </RowFooter>
         </ColBody>
       </Row>
     </CardBlank>

@@ -1,7 +1,4 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { convertCompilerOptionsFromJson } from 'typescript';
 import { useDataApp } from '../../contexts/data-app';
 import { formatCnpj } from '../../lib/util';
 import Icon from '../icon';
@@ -65,7 +62,6 @@ const objectNav = [
 
 const Nav: React.FC = () => {
   const { client } = useDataApp();
-  console.log('nav render');
 
   return (
     <NavStyl>

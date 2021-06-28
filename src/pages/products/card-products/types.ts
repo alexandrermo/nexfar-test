@@ -1,3 +1,9 @@
+import { ChckFilters } from '../types';
+
 export interface CardProductsProps {
-  chkFilters: Set<string>;
+  chkFilters: ChckFilters;
+}
+
+export interface BtnPageNumberProps {
+  active?: boolean;
 }

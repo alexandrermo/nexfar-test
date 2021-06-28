@@ -1,6 +1,5 @@
 import { useField } from '@unform/core';
 import React from 'react';
-import Input from '../input';
 import { LabelStyl } from './styled';
 import { InputCheckboxProps } from './types';
 
@@ -21,6 +20,9 @@ const InputCheckbox: React.FC<InputCheckboxProps> = ({
       ref: inputRef, // acessar o input como referência
       getValue: (ref) => {
         return ref.current.checked;
+      },
+      setValue: (ref, value: boolean) => {
+        ref.current.checked = value;
       },
     });
   }, [fieldName, registerField]);
