@@ -143,12 +143,14 @@ const CardProducts: React.FC<CardProductsProps> = ({
   const onChangeFilter = React.useCallback(
     (event) => {
       const { name, value } = event.currentTarget;
-      setInputsFilter((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      if (value !== inputsFilter[name]) {
+        setInputsFilter((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
     },
-    [setInputsFilter]
+    [setInputsFilter, inputsFilter]
   );
 
   const nextPage = React.useCallback(() => {
@@ -162,7 +164,7 @@ const CardProducts: React.FC<CardProductsProps> = ({
   const productsFilter = React.useMemo(
     () =>
       getProductsFilter(inputsFilter, chkFilters, shoppingCard as ShoppingCard),
-    [inputsFilter, chkFilters, shoppingCard]
+    [inputsFilter, chkFilters]
   );
 
   const exhibition = parseInt(inputsFilter.exhibition, 10);

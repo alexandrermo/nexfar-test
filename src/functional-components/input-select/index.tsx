@@ -1,7 +1,6 @@
 import React from 'react';
 import { useField } from '@unform/core';
 import { InputSelectProps } from './types';
-import Icon from '../icon';
 
 const Input: React.FC<InputSelectProps> = ({
   name,
