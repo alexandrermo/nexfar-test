@@ -17,12 +17,6 @@ export const LiTooltip = styled.li`
   text-align: left;
 `;
 
-export const RowHeader = styled(Row)`
-  border-bottom: 1px solid #cccccc;
-  margin: 0;
-  padding-bottom: 0.5rem;
-`;
-
 export const ColImg = styled(Col)`
   display: flex;
   justify-content: center;

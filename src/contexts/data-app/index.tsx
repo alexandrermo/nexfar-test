@@ -48,9 +48,36 @@ function calculeNewValShpCard(
 
 function reduceShoppingCard(
   prevShoppingCard: [ShoppingCard],
-  { product: productChange, quantity: newQuantity }: ReduceActionShpCard
+  { product: productChange, quantity: newQuantity, type }: ReduceActionShpCard
 ) {
   const itemsOld = prevShoppingCard[0].items;
+
+  if (type === 'clear') {
+    if (itemsOld.length === 0) {
+      return prevShoppingCard;
+    }
+
+    const newShoppingCard = deepCopy<[ShoppingCard]>(prevShoppingCard);
+    const [newObjShpCart] = newShoppingCard;
+
+    newObjShpCart.items = [];
+
+    newObjShpCart.updatedAt = new Date().getTime();
+
+    newObjShpCart.discount = 0;
+    newObjShpCart.grossTotal = 0;
+    newObjShpCart.netTotal = 0;
+    newObjShpCart.totalWithTaxes = 0;
+
+    return newShoppingCard;
+  }
+
+  if (!productChange || newQuantity === undefined) {
+    throw new Error(
+      'reduceShoppingCard: Para o type change é necessário haver product e quantity'
+    );
+  }
+
   const idxItemCard = itemsOld.findIndex(
     ({ product }) => product.id === productChange.id
   );

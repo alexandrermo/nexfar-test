@@ -1,5 +1,6 @@
 import { Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import { LinkStyl } from '../../styled-components/link-styl';
 
 export const HeaderStyl = styled.header`
   border-bottom: 3px solid #3cba92;
@@ -7,6 +8,9 @@ export const HeaderStyl = styled.header`
 
 export const ColRight = styled(Col)`
   margin-left: auto;
+`;
+
+export const LinkCart = styled(LinkStyl)`
   display: flex;
   flex-direction: column;
   align-items: center;

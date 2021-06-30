@@ -24,7 +24,7 @@ const objectNav = [
       {
         name: 'Produtos',
         icon: 'box',
-        href: 'products',
+        href: '/products',
       },
       {
         name: 'Pedidos',

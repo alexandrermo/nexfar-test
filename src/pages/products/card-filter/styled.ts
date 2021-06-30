@@ -7,12 +7,12 @@ export const DivFilter = styled.div`
   min-height: 100%;
   padding-left: 0.5rem;
   align-items: center;
+  font-family: Arial, sans-serif;
 `;
 
 export const SpanHeader = styled.span`
   color: #5b127d;
   font-weight: bold;
-  letter-spacing: 0.1rem;
 `;
 
 export const DivHeader = styled.div`

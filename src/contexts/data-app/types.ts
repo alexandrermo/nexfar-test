@@ -16,9 +16,9 @@ export interface Client {
 }
 
 export interface ReduceActionShpCard {
-  type: 'change';
-  product: Product;
-  quantity: number;
+  type: 'change' | 'clear';
+  product?: Product;
+  quantity?: number;
 }
 
 export interface ItemShopCard {

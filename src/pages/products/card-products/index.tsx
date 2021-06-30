@@ -10,7 +10,6 @@ import {
   BtnPageNumber,
   BtnSearch,
   DivPages,
-  DivProducts,
   FormSearch,
   InputSearch,
   LabelFilter,
@@ -20,6 +19,7 @@ import { checkPropsEquals } from '../../../lib/util';
 import { ChckFilters } from '../types';
 import { useDataApp } from '../../../contexts/data-app';
 import { ShoppingCard } from '../../../contexts/data-app/types';
+import { ContainerScreen } from '../../../styled-components/container-screen';
 
 function getProductsFilter(
   { searchText, ordering }: any,
@@ -56,10 +56,10 @@ function getProductsFilter(
   });
 
   productsFilter.sort((product1, product2) => {
-    let [propOrder1, propOrder2]: (string | number)[] = [
-      product1.name.toLowerCase(),
-      product2.name.toLowerCase(),
-    ];
+    const name1Low = product1.name.toLowerCase();
+    const name2Low = product2.name.toLowerCase();
+
+    let [propOrder1, propOrder2]: (string | number)[] = [name1Low, name2Low];
 
     const [typeOrder, isDesc] = ordering.split('-');
 
@@ -81,7 +81,11 @@ function getProductsFilter(
       return isDesc ? -1 : 1;
     }
 
-    return isDesc ? 1 : -1;
+    if (typeOrder === 'name' || propOrder1 < propOrder2) {
+      return isDesc ? 1 : -1;
+    }
+
+    return name1Low > name2Low ? 1 : -1;
   });
 
   return productsFilter;
@@ -132,8 +136,8 @@ const CardProducts: React.FC<CardProductsProps> = ({
 
   const onSubmitSearch = React.useCallback(
     (data) => {
-      if (!checkPropsEquals(data, inputsFilter)) {
-        setInputsFilter(data);
+      if (data.searchText !== inputsFilter.searchText) {
+        setInputsFilter((prev) => ({ ...prev, searchText: data.searchText }));
         setIdxPage(0);
       }
     },
@@ -148,6 +152,8 @@ const CardProducts: React.FC<CardProductsProps> = ({
           ...prev,
           [name]: value,
         }));
+
+        setIdxPage(0);
       }
     },
     [setInputsFilter, inputsFilter]
@@ -180,11 +186,11 @@ const CardProducts: React.FC<CardProductsProps> = ({
     setIdxPage(0);
   }, [chkFilters]);
 
-  const divPages =
+  const bodyPages =
     totalPages === 0 ? (
-      <></>
+      false
     ) : (
-      <DivPages className="my-4">
+      <>
         <BtnPageArrow disabled={idxPage === 0} onClick={previousPage}>
           <Icon name="arrow_back_ios" />
         </BtnPageArrow>
@@ -194,11 +200,11 @@ const CardProducts: React.FC<CardProductsProps> = ({
         <BtnPageArrow disabled={idxPage === totalPages - 1} onClick={nextPage}>
           <Icon name="arrow_forward_ios" />
         </BtnPageArrow>
-      </DivPages>
+      </>
     );
 
   return (
-    <DivProducts>
+    <ContainerScreen>
       <FormSearch onSubmit={onSubmitSearch} ref={formRef}>
         <BtnSearch type="submit">
           <Icon name="search" size="1.5rem" color="white" />
@@ -240,7 +246,11 @@ const CardProducts: React.FC<CardProductsProps> = ({
         </LabelFilter>
       </FormSearch>
 
-      {divPages}
+      {/* {bodyPages &&
+
+      } */}
+
+      {bodyPages && <DivPages className="my-4">{bodyPages}</DivPages>}
 
       {productsShow.map((product: Product, idx) => (
         <CardBlankProduct
@@ -250,8 +260,8 @@ const CardProducts: React.FC<CardProductsProps> = ({
         />
       ))}
 
-      {divPages}
-    </DivProducts>
+      {bodyPages && <DivPages className="mt-4">{bodyPages}</DivPages>}
+    </ContainerScreen>
   );
 };
 

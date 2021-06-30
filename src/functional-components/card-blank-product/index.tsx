@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useDataApp } from '../../contexts/data-app';
-import { CardBlank } from '../../styled-components/card-blank';
+import CardBlank from '../card-blank';
 import Icon from '../icon';
 import Tooltip from '../tooltip';
 import {
@@ -17,7 +17,6 @@ import {
   InputQnt,
   LiTooltip,
   RowFooter,
-  RowHeader,
   RowInfo,
   RowInfoValues,
   SpanFooter,
@@ -121,43 +120,50 @@ const CardBlankProduct: React.FC<CardBlankProductProps> = ({
   }, [quantity]);
 
   return (
-    <CardBlank {...rest}>
-      <RowHeader>
-        <Col xs="auto">
-          <SpanSku>{product.sku}</SpanSku>
-        </Col>
-        <Col xs="auto">
-          <SpanName>{product.name}</SpanName>
-        </Col>
-        <Col xs="auto" className="ml-auto">
-          <Tooltip text={product.barcode}>
-            <Icon name="barcode" />
-          </Tooltip>
-        </Col>
-        <Col xs="auto">
-          <Tooltip
-            minWidth="200px"
-            text={
-              <ul>
-                <LiTooltip>Princípio: {product.principle}</LiTooltip>
-                <LiTooltip>
-                  Impostos: R${' '}
-                  {product.price.taxes.toFixed(2).replace('.', ',')}
-                </LiTooltip>
-              </ul>
-            }
-          >
-            <Icon name="information-outline" />
-          </Tooltip>
-        </Col>
-      </RowHeader>
-
+    <CardBlank
+      header={{
+        size: '1rem',
+        notBold: true,
+        children: (
+          <>
+            <Col xs="auto">
+              <SpanSku>{product.sku}</SpanSku>
+            </Col>
+            <Col xs="auto">
+              <SpanName>{product.name}</SpanName>
+            </Col>
+            <Col xs="auto" className="ml-auto">
+              <Tooltip text={product.barcode}>
+                <Icon name="barcode" />
+              </Tooltip>
+            </Col>
+            <Col xs="auto">
+              <Tooltip
+                minWidth="200px"
+                text={
+                  <ul>
+                    <LiTooltip>Princípio: {product.principle}</LiTooltip>
+                    <LiTooltip>
+                      Impostos: R${' '}
+                      {product.price.taxes.toFixed(2).replace('.', ',')}
+                    </LiTooltip>
+                  </ul>
+                }
+              >
+                <Icon name="information-outline" />
+              </Tooltip>
+            </Col>
+          </>
+        ),
+      }}
+      {...rest}
+    >
       <Row>
         <ColImg xs={3}>
           <ImgProduct className="" src={product.imageURL} />
         </ColImg>
         <ColBody className="pl-0">
-          <RowInfo className="mt-4 ml-3">
+          <RowInfo className="ml-3">
             <Col className="pl-0">
               <Row>
                 <ColHeaderInfo>

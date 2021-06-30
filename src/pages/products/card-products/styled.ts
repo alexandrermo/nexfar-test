@@ -3,12 +3,6 @@ import styled from 'styled-components';
 import Input from '../../../functional-components/input';
 import { BtnPageNumberProps } from './types';
 
-export const DivProducts = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1rem 0 1rem;
-`;
-
 export const FormSearch = styled(Form)`
   display: flex;
   align-items: center;
