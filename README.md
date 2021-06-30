@@ -38,6 +38,8 @@ propriedades que precisam ser alteradas quando isto acontece. Para facilitar, ut
 
 4. Identificar partes do layout que podem ser os mesmos componentes para melhor manutenção do código.
 
+5. Verificar o comportamento do sistema nos diferentes browsers.
+
 ## RODAR A APLICAÇÃO
 
 1. Baixe o projeto localmente `git clone `.
