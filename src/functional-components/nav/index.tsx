@@ -97,6 +97,16 @@ const Nav: React.FC = () => {
                       fontWeight: 'bold',
                     }}
                     to={href}
+                    isActive={(match, location) => {
+                      if (
+                        match ||
+                        location.pathname.startsWith('/shopping-cart')
+                      ) {
+                        return true;
+                      }
+
+                      return false;
+                    }}
                   >
                     {renderHtml}
                   </NavLinkStyl>

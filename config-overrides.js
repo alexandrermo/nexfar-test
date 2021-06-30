@@ -1,14 +1,9 @@
-const {
-  addBabelPlugin,
-  override,
-  addWebpackModuleRule,
-} = require('customize-cra');
+const { override, addWebpackModuleRule } = require('customize-cra');
 
 module.exports = override(
   addWebpackModuleRule({
     test: /(\.woff$|\.eot$|icomoon\.svg|\.ttf$)/,
-    loader:
-      'D:\\alexa\\Documents\\Teste-emprego\\nexfar-test\\node_modules\\file-loader\\dist\\cjs.js',
+    loader: 'file-loader',
     options: { name: 'static/fonts/[name].[hash:8].[ext]' },
   })
 );

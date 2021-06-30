@@ -1,7 +1,14 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useDataApp } from '../../contexts/data-app';
-import { HeaderStyl, ColRight, DivCart, DivU, LinkCart } from './styled';
+import {
+  HeaderStyl,
+  ColRight,
+  DivCart,
+  DivU,
+  LinkCart,
+  IconNoti,
+} from './styled';
 import imgLogo from '../../assets/images/Nexfar.png';
 import Icon from '../icon';
 import { formatNbMoney } from '../../lib/util';
@@ -30,7 +37,7 @@ const Header: React.FC = () => {
         </ColRight>
 
         <Col xs="auto" className="d-flex align-items-center">
-          <Icon name="notifications_none" cursor="pointer" size="2.2rem" />
+          <IconNoti name="notifications_none" cursor="pointer" size="2.2rem" />
         </Col>
         <Col xs="auto" className="d-flex align-items-center">
           <DivU>U</DivU>
