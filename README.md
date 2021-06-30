@@ -42,7 +42,7 @@ propriedades que precisam ser alteradas quando isto acontece. Para facilitar, ut
 
 ## RODAR A APLICAÇÃO
 
-1. Baixe o projeto localmente `git clone `.
+1. Baixe o projeto localmente `git clone https://github.com/alexandrermo/nexfar-test.git`.
 
 2. Entre na pasta baixada e instale as dependências `npm install` ou `yarn`.
 
