@@ -4,11 +4,11 @@ Alguns detalhes do sistema:
 
 1. Foi implementado o carrinho em localStorage, portanto os produtos do carrinho continuarão salvos mesmo ao sair do sistema fechando o navegador, por exemplo.
 
-2. Ao clicar em `IR PARA PAGAMENTO` na tela do carrinho, a estrutura de dado do carrinho aparece no console em string e em objeto.
+2. Ao clicar em `IR PARA PAGAMENTO` na tela do carrinho, a estrutura de dado do carrinho aparece no console do browser, em string e em objeto.
 
-3. É possível segurar os botões `+` e `-` para adicionar produtos ao carrinho.
+3. É possível segurar os botões `+` e `-` na tela de produtos para adicionar produtos ao carrinho.
 
-4. Responsividade testada até a resolução recomendada para noteboks com tela de 13 a 15 polegadas.(1280 x 800)
+4. Responsividade testada em telas maiores até a resolução recomendada para noteboks com tela de 13 a 15 polegadas.(1280 x 800)
 
 5. Para acessar a tela do carrinho é preciso clicar no carrinho que se encontra no header.
 
