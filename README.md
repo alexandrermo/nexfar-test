@@ -2,7 +2,7 @@
 
 Alguns detalhes do sistema:
 
-1. Foi implementado o carrinho em localStorage, portanto os produtos do carrinho continuarão salvos mesmo ao sair do sistema.
+1. Foi implementado o carrinho em localStorage, portanto os produtos do carrinho continuarão salvos mesmo ao sair do sistema fechando o navegador, por exemplo.
 
 2. Ao clicar em `IR PARA PAGAMENTO` na tela do carrinho, a estrutura de dado do carrinho aparece no console em string e em objeto.
 
